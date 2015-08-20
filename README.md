@@ -35,6 +35,6 @@ Additional features:
 - The first specification ensures that there is a visual
   indication when an entry is starred, and that the entry
   is added to the starredEntries array.
-- This second test ensures that only starred entries
-  show up in the DOM when the filter-starred link is
+- This second specification ensures that only starred entries
+  are visible when the filter-starred link is
   clicked.
