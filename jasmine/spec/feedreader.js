@@ -157,8 +157,9 @@ $(function() {
          * show up in the DOM when the filter-starred link is clicked.
          */
         it('can be filtered by whether they are starred', function(done) {
+            $star.first().trigger('click');
             $('.filter-starred').trigger('click');
-            expect($('.star').not('.starred').length).toBe(0);
+            expect($('.star').not('.starred').attr('style')).toBe('visibility:hidden');
 
             done();
         });
