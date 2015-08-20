@@ -108,11 +108,9 @@ $(function() {
          */
          var $firstEntryOldURL;
 
-         beforeEach(function() {
-            $firstEntryOldURL = $('.feed').children().first().attr('href');
-         });
-
          beforeEach(function(done) {
+            $firstEntryOldURL = $('.feed').children().first().attr('href');
+
             loadFeed(1, function() {
                 done();
             });
