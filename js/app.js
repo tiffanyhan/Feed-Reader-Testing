@@ -23,6 +23,9 @@ var allFeeds = [
     }
 ];
 
+// Entries that the user has chosen to star.
+var starredEntries = [];
+
 /* This function starts up our application. The Google Feed
  * Reader API is loaded asynchonously and will then call this
  * function when the API is loaded.

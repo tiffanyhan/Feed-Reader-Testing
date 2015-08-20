@@ -123,4 +123,39 @@ $(function() {
             done();
          });
     });
+
+    /* Another test suite */
+    describe('Feed entries', function() {
+        /* This test ensures that there is a visual indication
+         * when an entry is starred, and that the entry is added
+         * to the starredEntries array.
+         */
+        beforeEach(function(done) {
+            loadFeed(0, function() {
+                done();
+            });
+        });
+
+        it('can be starred by user', function(done) {
+            $('.star').first().trigger('click');
+            expect($('.star').hasClass('starred')).toBe(true);
+            expect(starredEntries.length).not.toBe(0);
+
+            $('.star').first().trigger('click');
+            expect($('.star').hasClass('starred')).toBe(false);
+            expect(starredEntries.length).toBe(0);
+
+            done();
+        });
+
+        /* This test ensures that only starred entries
+         * show up in the DOM when the filter-starred link is clicked.
+         */
+        it('can be filtered by whether they are starred', function(done) {
+            $('.filter-starred').trigger('click');
+            expect($('.star').not('.starred').length).toBe(0);
+
+            done();
+        });
+    });
 }());
