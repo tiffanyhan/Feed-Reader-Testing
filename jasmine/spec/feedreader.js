@@ -59,8 +59,11 @@ $(function() {
         /* This test ensures that the menu element is
          * hidden by default.
          */
+         var $menuIconLink = $('.menu-icon-link');
+         var $body = $('body');
+
          it('is hidden by default', function() {
-            expect($('body').hasClass('menu-hidden')).toBe(true);
+            expect($body.hasClass('menu-hidden')).toBe(true);
          });
 
          /* This test ensures that the menu changes
@@ -69,11 +72,11 @@ $(function() {
           * clicked and does it hide when clicked again.
           */
           it('changes visibility when clicked', function() {
-            $('.menu-icon-link').trigger('click');
-            expect($('body').hasClass('menu-hidden')).toBe(false);
+            $menuIconLink.trigger('click');
+            expect($body.hasClass('menu-hidden')).toBe(false);
 
-            $('.menu-icon-link').trigger('click');
-            expect($('body').hasClass('menu-hidden')).toBe(true);
+            $menuIconLink.trigger('click');
+            expect($body.hasClass('menu-hidden')).toBe(true);
           });
     });
 
@@ -103,10 +106,10 @@ $(function() {
          * by the loadFeed function that the content actually changes.
          * loadFeed() is asynchronous.
          */
-         var oldURL;
+         var $firstEntryOldURL;
 
          beforeEach(function() {
-            oldURL = $('.feed').children().first().attr('href');
+            $firstEntryOldURL = $('.feed').children().first().attr('href');
          });
 
          beforeEach(function(done) {
@@ -116,9 +119,8 @@ $(function() {
          });
 
          it('results in new feed content', function(done) {
-            var newURL = $('.feed').children().first().attr('href');
-
-            expect(newURL).not.toBe(oldURL);
+            var $firstEntryNewURL = $('.feed').children().first().attr('href');
+            expect($firstEntryNewURL).not.toBe($firstEntryOldURL);
 
             done();
          });
@@ -130,6 +132,9 @@ $(function() {
          * when an entry is starred, and that the entry is added
          * to the starredEntries array.
          */
+         var $star = $('.star');
+         var starredEntriesLength = starredEntries.length;
+
         beforeEach(function(done) {
             loadFeed(0, function() {
                 done();
@@ -137,13 +142,13 @@ $(function() {
         });
 
         it('can be starred by user', function(done) {
-            $('.star').first().trigger('click');
-            expect($('.star').hasClass('starred')).toBe(true);
-            expect(starredEntries.length).not.toBe(0);
+            $star.first().trigger('click');
+            expect($star.hasClass('starred')).toBe(true);
+            expect(starredEntriesLength).not.toBe(0);
 
-            $('.star').first().trigger('click');
-            expect($('.star').hasClass('starred')).toBe(false);
-            expect(starredEntries.length).toBe(0);
+            $star.first().trigger('click');
+            expect($star.hasClass('starred')).toBe(false);
+            expect(starredEntriesLength).toBe(0);
 
             done();
         });

@@ -131,4 +131,9 @@ $(function() {
     menuIcon.on('click', function() {
         $('body').toggleClass('menu-hidden');
     });
+
+    $('.star').click(function(event) {
+        console.log('clicked');
+        $(event.target).toggleClass('starred');
+    });
 }());
