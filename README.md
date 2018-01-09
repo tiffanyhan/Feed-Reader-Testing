@@ -1,4 +1,4 @@
-JAVASCRIPT TESTING PROJECT
+Javascript Testing Project
 ==========================
 
 To run this application:
